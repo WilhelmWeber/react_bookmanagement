@@ -26,6 +26,7 @@ const Views = () => {
       getDocs(q).then((snapShot) => {
           setBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
           setAllBooks(books);
+          console.log(allBooks);
       });
     }, []);
  
