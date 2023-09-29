@@ -27,6 +27,7 @@ const Views = () => {
           setBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
           setAllBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
           console.log(allBooks);
+          console.log(auth.id);
       });
     }, []);
  
