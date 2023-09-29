@@ -38,7 +38,7 @@ const MemoBase = () => {
 
     if (modeChange === true) {
 
-        if (memo) {
+        if (memo && info) {
             return (
                 <div className='MemoBase'>
                     <Memo memo={memo[0]} />
