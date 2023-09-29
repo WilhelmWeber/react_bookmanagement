@@ -25,6 +25,7 @@ const MemoBase = () => {
         getDocs(q).then((snapShot) => {
             setAllMemos(snapShot.docs.map((doc) => ({ ...doc.data(), id:doc.id })));
         });
+        console.log(allMemos);
     }, []);
 
     //info変更時に当該IDのメモをmemoにsetする
@@ -33,6 +34,7 @@ const MemoBase = () => {
         const _memo = allMemos.filter(function(value) {
             return value.document_id === info.document_id
         });
+        console.log(_memo);
         setMemo(_memo);
     }, [info])
 
