@@ -25,6 +25,7 @@ const Views = () => {
       const q = query(collection(db, 'books'), where('uID', '==', auth.id));
       getDocs(q).then((snapShot) => {
           setAllBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
+          setBooks(allBooks);
       });
     }, []);
  
