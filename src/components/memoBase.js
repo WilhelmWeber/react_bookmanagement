@@ -15,7 +15,7 @@ const MemoBase = () => {
     //メモ全データを予め取ってくる（firebase取得の節約）
     const [allMemos, setAllMemos] = useState([]);
     //メモデータ保持用（リストで返ってくる）
-    const [memo, setMemo] = useState();
+    const [memo, setMemo] = useState(null);
     //検索用の書誌情報idはグローバルから取ってくる
     const { info } = useContext(infoContext);
 
