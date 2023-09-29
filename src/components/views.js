@@ -24,8 +24,8 @@ const Views = () => {
     useEffect(() => {
       const q = query(collection(db, 'books'), where('uID', '==', auth.id));
       getDocs(q).then((snapShot) => {
-          setAllBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
-          setBooks(allBooks);
+          setBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
+          setAllBooks(books);
       });
     }, []);
  
