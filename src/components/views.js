@@ -71,8 +71,7 @@ const Views = () => {
         .catch(()=> alert('PDFがありません'));
     };
 
-    const deleteHandler = (document_id, e) => {
-      e.preventDefault();
+    const deleteHandler = (document_id) => {
       let result = window.confirm('ほんとうに削除しますか？')
       if (result) {
         const q1 = query(collection(db, 'books'), where('document_id', '==', document_id))
