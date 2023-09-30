@@ -21,7 +21,7 @@ const MemoBase = () => {
 
     //初回レンダリング時に全データを取ってくる
     useEffect(() => {
-        const q = query(collection(db, "memos"), where("uID", "==", auth.id));
+        const q = query(collection(db, "memos"));
         getDocs(q).then((snapShot) => {
             setAllMemos(snapShot.docs.map((doc) => ({ ...doc.data(), id:doc.id })));
         });

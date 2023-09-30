@@ -26,8 +26,6 @@ const Views = () => {
       getDocs(q).then((snapShot) => {
           setBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
           setAllBooks(snapShot.docs.map((doc) => ({ ...doc.data() })));
-          console.log(allBooks);
-          console.log(auth.id);
       });
     }, []);
  
@@ -36,7 +34,7 @@ const Views = () => {
       if (booksInList) {
         const document_ids = booksInList.map((value) => value.document);
         const selectedBook = allBooks.filter((value) => {
-          return value.dcoument_id in document_ids;
+          return document_ids.includes(value.document_id);
         });
         setBooks(selectedBook);
       } else {
@@ -119,6 +117,10 @@ const Views = () => {
     if (books.length === 0) {
       return (
         <div className='views'>
+          <div className='flex'>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-medium h-10 px-5 m-2 rounded" onClick={() => setShowReferences(true)}>参考文献表を生成する</button>
+            <ListSelect setBooksInList={setBooksInList}/>
+          </div>
           <h1>書誌情報を登録してください</h1>
         </div>
       );
@@ -154,12 +156,12 @@ const Views = () => {
                               <td class="border px-4 py-2">{book.year}</td>
                               {
                                 book.title === info.title ? (
-                                  <td><button class="bg-gray-800 hover:bg-gray-700 text-white rounded px-4 py-2"  onClick={() => infoChange(book)}>選択中</button></td>
+                                  <td><button class="bg-gray-800 hover:bg-gray-700 text-white rounded px-4 h-12"  onClick={() => infoChange(book)}>選択中</button></td>
                                 ) : (
-                                  <td><button class="bg-gray-800 hover:bg-gray-700 text-white rounded px-4 py-2"  onClick={() => infoChange(book)}>詳細情報</button></td>
+                                  <td><button class="bg-gray-800 hover:bg-gray-700 text-white rounded px-4 h-12"  onClick={() => infoChange(book)}>詳細情報</button></td>
                                 )
                               }
-                              <td><button class="bg-red-800 hover:bg-red-700 text-white rounded px-4 py-2"  onClick={() => deleteHandler(book.document_id)}>削除する</button></td>
+                              <td><button class="bg-red-800 hover:bg-red-700 text-white rounded px-4 h-12"  onClick={() => deleteHandler(book.document_id)}>削除する</button></td>
                             </tr>
                           )}
                         </Draggable>

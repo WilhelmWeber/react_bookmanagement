@@ -29,9 +29,13 @@ const Login = () => {
     };
 
     return (
-        <div className="login">
-            <p>Zoteroクローンへようこそ。今すぐGoogleアカウントで文献管理を始めましょう。</p>
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={signin}>Googleアカウントでサインインする</button>
+        <div className="flex h-screen justify-center items-center flex-col">
+            <div className="w-full h-screen bg-[url('https://img.freepik.com/free-photo/old-opened-book-is-christian-psalter_1398-747.jpg')] bg-cover bg-center">
+                <div className="w-full h-full flex flex-col justify-center items-center backdrop-brightness-50 gap-y-10">
+                    <p className="text-bold text-white text-3xl">文献管理アプリへようこそ</p>
+                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={signin}>Googleアカウントでサインインする</button>
+                </div>
+            </div>
         </div>
     );
 };
