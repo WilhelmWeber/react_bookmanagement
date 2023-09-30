@@ -7,26 +7,16 @@ import { db } from './firebase';
 import { query, where, collection, getDocs } from 'firebase/firestore';
 import { infoContext, authContext } from '../App';
 
-const MemoBase = () => {
+const MemoBase = ({ allMemos }) => {
 
     const auth = useContext(authContext);
     //モード変更用（MemoEditorにはPropsで渡してMemoEditor側で変えてもらう）
     const [modeChange, setModeChange] = useState(true);
     //メモ全データを予め取ってくる（firebase取得の節約）
-    const [allMemos, setAllMemos] = useState([]);
     //メモデータ保持用（リストで返ってくる）
     const [memo, setMemo] = useState(null);
     //検索用の書誌情報idはグローバルから取ってくる
     const { info } = useContext(infoContext);
-
-    //初回レンダリング時に全データを取ってくる
-    useEffect(() => {
-        const q = query(collection(db, "memos"));
-        getDocs(q).then((snapShot) => {
-            setAllMemos(snapShot.docs.map((doc) => ({ ...doc.data(), id:doc.id })));
-        });
-        console.log(allMemos);
-    }, []);
 
     //info変更時に当該IDのメモをmemoにsetする
     useEffect(() => {
@@ -34,7 +24,6 @@ const MemoBase = () => {
         const _memo = allMemos.filter(function(value) {
             return value.document_id === info.document_id
         });
-        console.log(_memo);
         setMemo(_memo);
     }, [info])
 
